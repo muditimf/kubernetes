@@ -1,0 +1,12 @@
+---
+apiVersion: v1   # whenever u design pod
+kind: Pod
+metadata:
+ name: we
+spec:
+ containers:
+  - name: web1
+    image: nginx
+    ports:
+     - containerPort: 80
+    imagePullPolicy: IfNotPresent
