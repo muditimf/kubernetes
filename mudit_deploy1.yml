@@ -1,0 +1,18 @@
+---
+apiVersion: extensions/v1beta1  #fixed get info from "kubectl explain deployments"
+kind: Deployment   #collection of PODS
+metadata:
+ name: msdep1
+spec:
+ replicas: 2 #no of pods in single deployment
+ template:    #used to give name to all cont inside dep
+  metadata:
+   labels:
+    app: web1   #custom name,dep recognize pods wid labels,the tag over name to avoid name conflict in cont names.
+  spec:     #spec about containers
+   containers:
+    - name: c1
+      image: nginx
+      ports:
+       - containerPort: 80
+      imagePullPolicy: IfNotPresent  
