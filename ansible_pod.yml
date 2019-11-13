@@ -13,7 +13,7 @@
           app: msapp
         spec:
          containers:
-          - image: 54.209.84.26:5000/img1
+          - image: IP/img1
             name: c1
             ports:
              - containerPort: 80
