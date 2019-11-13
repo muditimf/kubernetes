@@ -1,0 +1,38 @@
+- hosts: all
+  tasks:
+   - name: running pods
+     k8s:
+      state: present
+      definition:
+        apiVersion: v1
+        kind: Pod
+        metadata:
+         name: muditpod
+         namespace: default
+         labels:
+          app: msapp
+        spec:
+         containers:
+          - image: 54.209.84.26:5000/img1
+            name: c1
+            ports:
+             - containerPort: 80
+            imagePullPolicy: IfNotPresent
+
+   - name: create service
+     k8s:
+      state: present
+      definition:
+       apiVersion: v1
+       kind: Service
+       metadata:
+        name: service1
+        namespace: default
+       spec:
+        type: NodePort
+        ports:
+         - targetPort: 80
+           port: 80
+           nodePort: 32008
+        selector:
+         name: msapp
