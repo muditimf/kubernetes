@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: ms
+ labels:
+  app: ms
+spec:
+ selector:
+  matchLabels:
+   app: mysqlpod
+ template:
+  metadata:
+   name: mysqlpod
+   labels:
+    app: mysqlpod
+  spec:
+   containers:
+   - image: mysql:5.6
+     name: mycont
+     ports:
+     - containerPort: 3306
+     env:
+     - name: MYSQL_ROOT_PASSWORD
+       valueFrom:
+        configMapKeyRef:
+         name: conf1
+         key: dbpass

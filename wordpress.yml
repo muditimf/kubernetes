@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: wpdep
+ labels:
+  app: wpdep
+spec:
+ selector:
+  matchLabels:
+   app: wppod
+ template:
+  metadata:
+   name: wppod
+   labels:
+    app: wppod
+  spec:
+   containers:
+   - image: wordpress
+     name: wpcont
+     ports:
+     - containerPort: 80
+     env:
+     - name: WORDPRESS_DB_HOST
+       value: dbservice
+     - name: WORDPRESS_DB_PASSWORD
+       valueFrom:
+        configMapKeyRef:
+         name: conf1
+         key: dbpass
