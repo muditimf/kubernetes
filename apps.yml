@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: dep-app
+spec:
+ selector:
+  matchLabels:
+   app: appdep
+ template:
+  metadata:
+   labels:
+    app: appdep
+  spec:
+   containers:
+   - image: muditdocker00/apps:v1
+     name: c1
+     ports:
+      - containerPort: 80
+

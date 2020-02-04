@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: dep-games
+spec:
+ selector:
+  matchLabels:
+   app: gamesdep
+ template:
+  metadata:
+   labels:
+    app: gamesdep
+  spec:
+   containers:
+   - image: muditdocker00/games:v1
+     name: c2
+     ports:
+      - containerPort: 80
+

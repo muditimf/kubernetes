@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+ name: gamesservice
+ labels:
+  app: gamesservice
+spec:
+ type: ClusterIP
+ ports:
+ - port: 80
+   targetPort: 80
+ selector:
+  app: gamesdep
